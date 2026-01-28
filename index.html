@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap de 30 Dias | Cowflix</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00d084;
+            --primary-dark: #009656;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --bg-light: #f0f5f3;
+            --bg-white: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background: white;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .overview {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .overview h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .overview p {
+            font-size: 1.1em;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-button {
+            padding: 12px 24px;
+            border: 2px solid var(--primary);
+            background: white;
+            color: var(--primary);
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .tab-button.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .tab-button:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .weeks {
+            display: grid;
+            gap: 30px;
+        }
+
+        .week {
+            display: none;
+        }
+
+        .week.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .week h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .days {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .day-card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .day-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(0, 208, 132, 0.1);
+        }
+
+        .day-card h4 {
+            color: var(--primary);
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .day-card .title {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .day-card .description {
+            color: var(--text-light);
+            font-size: 0.95em;
+            margin-bottom: 15px;
+        }
+
+        .day-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .day-card li {
+            padding: 5px 0;
+            color: var(--text-light);
+            font-size: 0.9em;
+        }
+
+        .day-card li:before {
+            content: "✓ ";
+            color: var(--primary);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .milestone {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+        }
+
+        .milestone h4 {
+            color: white;
+        }
+
+        .milestone .title {
+            color: white;
+        }
+
+        .milestone .description {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .milestone li {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .milestone li:before {
+            color: #FFB800;
+        }
+
+        .pillars {
+            background: var(--bg-light);
+            padding: 40px 20px;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+
+        .pillars h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .pillar-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 4px solid var(--primary);
+        }
+
+        .pillar-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .pillar-card p {
+            color: var(--text-light);
+            font-size: 0.95em;
+        }
+
+        .cta {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .overview h2 {
+                font-size: 1.5em;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Roadmap de 30 Dias</h1>
+        <p>Estratégia de Crescimento Cowflix</p>
+    </header>
+
+    <div class="container">
+        <div class="overview">
+            <h2>Sua Jornada de Transformação</h2>
+            <p><strong>Duração:</strong> 30 dias | <strong>Foco:</strong> Crescimento Acelerado | <strong>Objetivo:</strong> Fábrica de Lucro Iniciada</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="showWeek(1)">Semana 1</button>
+            <button class="tab-button" onclick="showWeek(2)">Semana 2</button>
+            <button class="tab-button" onclick="showWeek(3)">Semana 3</button>
+            <button class="tab-button" onclick="showWeek(4)">Semana 4</button>
+        </div>
+
+        <div class="weeks">
+            <!-- Semana 1 -->
+            <div class="week active" id="week-1">
+                <h3>Semana 1: Fundação e Comunicação</h3>
+                <div class="days">
+                    <div class="day-card">
+                        <h4>Dia 1-2</h4>
+                        <div class="title">O Ganho (A Dor do Cliente)</div>
+                        <div class="description">Diagnóstico inicial e mapeamento de dores</div>
+                        <ul>
+                            <li>Análise de perda invisível</li>
+                            <li>Identificação de oportunidades</li>
+                        </ul>
+                    </div>
+                    <div class="day-card">
+                        <h4>Dia 3-4</h4>
+                        <div class="title">Estrutura Pronta</div>
+                        <div class="description">Marcos: Estrutura Pronta</div>
+                        <ul>
+                            <li>Sistemas configurados</li>
+                            <li>Equipe alinhada</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Semana 2 -->
+            <div class="week" id="week-2">
+                <h3>Semana 2: Lançamento e Primeiros Contatos</h3>
+                <div class="days">
+                    <div class="day-card">
+                        <h4>Dia 5-11</h4>
+                        <div class="title">A Solução (As Trilhas)</div>
+                        <div class="description">Apresentação das soluções</div>
+                        <ul>
+                            <li>Trilha 1: Protocolo Ouro da Mastite</li>
+                            <li>Trilha 2: O Desafio da Transição</li>
+                            <li>Trilha 3: Gestão 4.0</li>
+                        </ul>
+                    </div>
+                    <div class="day-card milestone">
+                        <h4>Dia 12</h4>
+                        <div class="title">Primeiras Vendas</div>
+                        <div class="description">Marcos: Primeiras Vendas</div>
+                        <ul>
+                            <li>Primeira conversão confirmada</li>
+                            <li>Momentum iniciado</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Semana 3 -->
+            <div class="week" id="week-3">
+                <h3>Semana 3: Aceleração e Otimização</h3>
+                <div class="days">
+                    <div class="day-card">
+                        <h4>Dia 15</h4>
+                        <div class="title">50% da Meta</div>
+                        <div class="description">Marcos: 50% da Meta</div>
+                        <ul>
+                            <li>Aceleração de vendas</li>
+                            <li>Otimização de processos</li>
+                        </ul>
+                    </div>
+                    <div class="day-card">
+                        <h4>Dia 16-18</h4>
+                        <div class="title">Novo Pitch (Venda de Benefício)</div>
+                        <div class="description">Refinamento da mensagem</div>
+                        <ul>
+                            <li>Mensagens mais efetivas</li>
+                            <li>Maior conversão</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Semana 4 -->
+            <div class="week" id="week-4">
+                <h3>Semana 4: Consolidação e Crescimento</h3>
+                <div class="days">
+                    <div class="day-card">
+                        <h4>Dia 22-29</h4>
+                        <div class="title">Como Usar (Ferramenta de Vendas)</div>
+                        <div class="description">Consolidação de resultados</div>
+                        <ul>
+                            <li>Processos consolidados</li>
+                            <li>Equipe capacitada</li>
+                        </ul>
+                    </div>
+                    <div class="day-card milestone">
+                        <h4>Dia 30</h4>
+                        <div class="title">Fábrica de Lucro Iniciada</div>
+                        <div class="description">Marcos: Fábrica de Lucro Iniciada</div>
+                        <ul>
+                            <li>Sistema sustentável</li>
+                            <li>Crescimento contínuo</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pillars">
+            <h2>4 Pilares de Crescimento</h2>
+            <div class="pillar-grid">
+                <div class="pillar-card">
+                    <h3>Excelência</h3>
+                    <p>Qualidade superior em tudo que fazemos</p>
+                </div>
+                <div class="pillar-card">
+                    <h3>Ciência</h3>
+                    <p>Dados e análise guiam nossas decisões</p>
+                </div>
+                <div class="pillar-card">
+                    <h3>Capacitação</h3>
+                    <p>Desenvolvimento contínuo da equipe</p>
+                </div>
+                <div class="pillar-card">
+                    <h3>Lucro</h3>
+                    <p>Rentabilidade sustentável e crescente</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta">
+            <button class="cta-button" onclick="alert('Comece sua transformação agora!')">Começar Semana 1</button>
+        </div>
+    </div>
+
+    <script>
+        function showWeek(weekNumber) {
+            // Hide all weeks
+            document.querySelectorAll('.week').forEach(week => {
+                week.classList.remove('active');
+            });
+            
+            // Remove active from all buttons
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected week
+            document.getElementById('week-' + weekNumber).classList.add('active');
+            
+            // Add active to clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
